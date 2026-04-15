@@ -1,7 +1,7 @@
 # Research-First Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](./CHANGELOG.md)
+[![GitHub release](https://img.shields.io/github/v/release/niveku/research-first-skill)](https://github.com/niveku/research-first-skill/releases)
 
 A skill for AI coding agents that enforces a **research-first workflow** — always search for existing tools, libraries, templates, frameworks, and resources before creating anything from scratch.
 
@@ -11,7 +11,7 @@ Works for any workflow: development, writing, data analysis, ops, and research.
 
 ## What it does
 
-When you ask Claude to build, write, research, or automate something, this skill makes it:
+When you ask your agent to build, write, research, or automate something, this skill makes it:
 
 1. **Detect your existing context** — reads config files, style guides, existing assets, and current stack to understand what you already have
 2. **Search for existing solutions** across multiple layers:

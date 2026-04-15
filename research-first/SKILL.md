@@ -21,7 +21,7 @@ Creating from scratch when a battle-tested solution already exists is the most e
 
 ## The Workflow
 
-When the user asks you to build, implement, fix, or automate something, follow this sequence:
+When the user asks you to build, write, research, analyze, implement, fix, or automate something, follow this sequence:
 
 ### Step 1: Understand the Task and Detect Existing Context (30 seconds)
 
@@ -83,7 +83,12 @@ Before anything else, exhaust the ecosystem of existing integrations:
 - Search for `"mcp server {service}" github` for specific integrations (e.g., "mcp server stripe github")
 - Check repos like `punkpeye/awesome-mcp-servers` and `modelcontextprotocol/servers`
 - Search GitHub Discussions and Issues for real-world usage reports: `"{tool name} site:github.com/discussions"`
-- Search Reddit for developer opinions: `"{problem} {language} site:reddit.com r/programming OR r/webdev OR r/node OR r/python"`
+- Search Reddit for opinions — adapt the subreddits to the domain:
+  - Dev: `"{problem} site:reddit.com r/programming OR r/webdev OR r/node OR r/python"`
+  - Data/ML: `"{problem} site:reddit.com r/datascience OR r/MachineLearning OR r/learnmachinelearning"`
+  - Ops/infra: `"{problem} site:reddit.com r/devops OR r/sysadmin OR r/aws"`
+  - Writing/content: `"{problem} site:reddit.com r/writing OR r/marketing OR r/content_marketing"`
+  - AI tools: `"{problem} site:reddit.com r/LocalLLaMA OR r/ChatGPT OR r/ClaudeAI"`
 - Search Hacker News for vetted recommendations: `"{tool} site:news.ycombinator.com"`
 - Search AI-focused communities for the latest tools: `"{problem} AI tool site:reddit.com r/LocalLLaMA OR r/ChatGPT OR r/ClaudeAI"`
 - Check Dev.to and Hashnode for recent developer experience posts: `"{tool} review site:dev.to"`
@@ -191,6 +196,21 @@ Only now create. When implementing:
 - **Process/ops**: Copy and adapt the found template/workflow. Only customize the parts specific to this context.
 - **Universal rule**: if you used an external resource, say so — a link or reference helps the user maintain the work later.
 
+## Effort Calibration
+
+Not every task warrants the full 5-step workflow. Use this as a guide:
+
+| Task type | Search depth | Skip what |
+|---|---|---|
+| Trivial (fix a typo, rename a variable) | Skip entirely | Everything — just do it |
+| Simple, well-known task (add a `.gitignore`, format a date) | 1 min max | Skip MCP layer and forum search |
+| Dev task with a clear library solution | 3–5 min | Skip writing/data/ops resource lists |
+| Writing task (report, template, strategy) | 3–5 min | Skip MCP layer (2a) entirely — not relevant |
+| Data/ML task | 5–10 min | Focus on Kaggle, Hugging Face, Papers With Code; skip MCP layer unless the task involves a data pipeline |
+| Complex or ambiguous task | Full workflow | Nothing — run all layers |
+
+**The goal is never thoroughness for its own sake.** A search that takes longer than the task itself is waste. When in doubt: run a fast search (1–2 queries), see if something obvious surfaces, and proceed.
+
 ## What NOT to Do
 
 - Don't skip the search and jump straight to creating, even if you "know" how to do it — there might be something better now
@@ -248,7 +268,7 @@ These curated lists are gold mines — search them when relevant:
 - **Socket.dev** — Security analysis of npm/PyPI packages
 
 **Community forums (unfiltered opinions):**
-- **Reddit** — r/programming, r/webdev, r/node, r/python, r/LocalLLaMA, r/ClaudeAI, and domain-specific subs
+- **Reddit** — pick subreddits for the domain: r/programming, r/webdev, r/datascience, r/MachineLearning, r/devops, r/marketing, r/LocalLLaMA, r/ClaudeAI
 - **Hacker News** — news.ycombinator.com (search via Algolia: hn.algolia.com)
 - **GitHub Discussions** — Real usage reports and issues from developers
 - **Dev.to / Hashnode** — Recent developer experience posts (use with bias filter)
