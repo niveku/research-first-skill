@@ -1,32 +1,38 @@
 # Research-First Skill
 
-A Claude skill that enforces a **research-first workflow** — always search for existing tools, libraries, MCPs, plugins, and open-source projects before writing code from scratch.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](./CHANGELOG.md)
+
+A Claude skill that enforces a **research-first workflow** — always search for existing tools, libraries, templates, frameworks, and resources before creating anything from scratch.
+
+Works for any workflow: development, writing, data analysis, ops, and research.
 
 ## What it does
 
-When you ask Claude to build, implement, or automate something, this skill makes it:
+When you ask Claude to build, write, research, or automate something, this skill makes it:
 
-1. **Detect your existing stack** — reads `package.json`, `requirements.txt`, etc. to understand what you already use
+1. **Detect your existing context** — reads config files, style guides, existing assets, and current stack to understand what you already have
 2. **Search for existing solutions** across multiple layers:
    - Connected MCPs, plugins, and skills
    - Official registries (Anthropic MCP registry, Smithery.ai, mcp.run, Glama.ai)
    - GitHub repos, community lists (`awesome-*`), and open-source tools
+   - Templates and frameworks for writing, data, and process tasks (Notion, Kaggle, Hugging Face, etc.)
    - Developer forums (Reddit, HN, GitHub Discussions) for unfiltered opinions
    - Free-tier services via [free-for.dev](https://free-for.dev)
-3. **Validate candidates rigorously** — checks stars, downloads, activity, security (CVEs), license, and stack fit
+3. **Validate candidates rigorously** — checks stars, downloads, activity, security (CVEs), license, and fit with your context
 4. **Detect self-promotional bias** — cross-references 3+ sources, flags "Top 10" blogs that rank their own product #1
 5. **Recommend one clear solution** with alternatives and trade-offs
-6. **Only then write code** — using the found resources instead of reinventing the wheel
+6. **Only then create** — using found resources instead of reinventing the wheel
 
 ## Why
 
-Writing code from scratch when a battle-tested solution already exists is the most expensive mistake in software development. A 5-minute search can save hours of coding and weeks of maintenance.
+Creating from scratch when a battle-tested solution already exists is the most expensive mistake in any workflow. A 5-minute search can save hours of work and weeks of maintenance.
 
 ## Install
 
 ### Option 1: Double-click the `.skill` file
 
-Download `research-first.skill` and double-click it. It installs automatically in Claude (Cowork or Claude Code).
+Download `research-first.skill` and double-click it. It installs automatically in Claude Code.
 
 ### Option 2: Manual install (Claude Code)
 
@@ -38,21 +44,30 @@ cp -r research-first/ ~/.claude/skills/
 cp -r research-first/ .claude/skills/
 ```
 
-### Option 3: Manual install (Cowork)
-
-Copy the `research-first/` folder to your Cowork skills directory.
-
 ## Usage
 
-Once installed, the skill triggers automatically whenever you ask Claude to build something. No special commands needed.
+Once installed, the skill triggers automatically. No special commands needed.
 
-Examples of prompts that trigger it:
-
+**Development:**
 - "Add authentication to my Next.js app"
 - "I need web scraping in Python"
 - "Set up CI/CD with free hosting for my React app"
 - "Build a REST API with a database"
+
+**Writing / content:**
+- "Write a product requirements document"
+- "Create a weekly status report template"
+- "Draft a go-to-market strategy"
+
+**Data / analysis:**
+- "Build a sales dashboard"
+- "Analyze customer churn in our dataset"
+- "Find a model for sentiment analysis"
+
+**Ops / process:**
 - "Automate my deployment pipeline"
+- "Create an onboarding checklist for new engineers"
+- "Set up infrastructure monitoring"
 
 ## What's inside
 
@@ -61,6 +76,7 @@ research-first/
 └── SKILL.md          # The skill instructions
 research-first.skill  # Packaged skill (installable)
 README.md             # This file
+CHANGELOG.md          # Version history
 LICENSE               # MIT License
 ```
 
