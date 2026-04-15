@@ -3,7 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](./CHANGELOG.md)
 
-A Claude skill that enforces a **research-first workflow** — always search for existing tools, libraries, templates, frameworks, and resources before creating anything from scratch.
+A skill for AI coding agents that enforces a **research-first workflow** — always search for existing tools, libraries, templates, frameworks, and resources before creating anything from scratch.
+
+Built for **Claude Code**. Also compatible with Codex, Gemini CLI, Cursor, and any agent that supports SKILL.md-based skills.
 
 Works for any workflow: development, writing, data analysis, ops, and research.
 
@@ -34,14 +36,17 @@ Creating from scratch when a battle-tested solution already exists is the most e
 
 Download `research-first.skill` and double-click it. It installs automatically in Claude Code.
 
-### Option 2: Manual install (Claude Code)
+### Option 2: Manual install
 
 ```bash
-# Global (all projects)
+# Claude Code — global (all projects)
 cp -r research-first/ ~/.claude/skills/
 
-# Per project
+# Claude Code — per project
 cp -r research-first/ .claude/skills/
+
+# Codex / Gemini CLI / Cursor — check your agent's skills directory
+cp -r research-first/ <your-agent-skills-dir>/
 ```
 
 ## Usage
