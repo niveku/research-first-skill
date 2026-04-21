@@ -9,10 +9,7 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/niveku/research-first-skill",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/niveku/research-first-skill.git"
-  },
+  "repository": "https://github.com/niveku/research-first-skill",
   "keywords": [
     "research",
     "workflow",
