@@ -18,6 +18,7 @@ When you ask your agent to build, write, analyze, or automate something, this sk
 1. **Detect your existing context** - reads config files, style guides, data sources, and current stack.
 2. **Search for existing solutions** across multiple layers:
    - Connected MCPs, plugins, and skills
+   - **Similar open-source projects** you can use, self-host, fork, or learn from (`awesome-selfhosted`, `openalternative.co`, `alternativeto.net`, GitHub topics and trending)
    - Official registries (Anthropic MCP registry, Smithery.ai, mcp.run, Glama.ai)
    - GitHub repos, `awesome-*` lists, and open-source tools
    - Templates for writing, data, and process tasks (Notion, Kaggle, Hugging Face, etc.)

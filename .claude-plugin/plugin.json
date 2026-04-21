@@ -1,6 +1,6 @@
 {
   "name": "research-first",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Finds existing tools, libraries, MCPs, templates, datasets, and frameworks before creating anything from scratch. Prevents reinventing the wheel across dev, writing, data, ops, and research tasks.",
   "author": {
     "name": "Kevin Henao",

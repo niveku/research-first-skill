@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.0] - 2026-04-20
+
+### Added
+- **Dedicated Step 2b "Find similar open-source projects"** - promoted from a buried bullet in the old 2b web-search block to a first-class step with four explicit outcomes (use directly, self-host and adapt, fork and extend, reference architecture). This runs BEFORE searching for component-level tools/libraries when the task is a whole product or system ("build a CRM", "Notion clone", "job queue").
+- New curated OSS-discovery resource list in `references/dev.md`:
+  - [awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted)
+  - [awesome-oss-alternatives](https://github.com/RunaCapital/awesome-oss-alternatives) (OSS replacements for SaaS)
+  - [alternativeto.net](https://alternativeto.net), [openalternative.co](https://openalternative.co), [privacyguides.org/tools](https://privacyguides.org/tools/)
+  - [LibHunt](https://libhunt.com), [GitHub Trending](https://github.com/trending), `github.com/topics/{topic}`
+- Effort calibration row for "Build a product / system / clone / tool" (10-15 min, emphasis on Step 2b similar-projects search)
+- "What NOT to do" rule: don't reimplement a whole product when a similar OSS project already exists
+
+### Changed
+- Renumbered Step 2: old 2b -> 2c (tools/libraries), old 2c -> 2d (templates/patterns) to make room for the new 2b (similar projects)
+- Step 4 "Present the recommendation" now explicitly asks to surface similar-project findings (use directly / self-host / fork / reference) and to flag paid alternatives clearly as paid
+
 ## [1.2.0] - 2026-04-20
 
 ### Changed

@@ -36,9 +36,30 @@ Run searches in parallel where possible. Breadth first, depth on the best candid
 
 Forums beat blogs: developers will say "I tried X and it was terrible because..." - blogs rarely do.
 
-**2b. Web search for tools, libraries, and resources** - query patterns are domain-specific, see the matching reference file.
+**2b. Look for similar open-source projects (do this FIRST when the task is "build a product / system / clone / tool").**
 
-**2c. Search for reusable patterns and templates** - boilerplates, starter repos, document frameworks, analysis notebooks, SOPs. See the domain reference.
+Before building anything non-trivial, check if someone has already built something similar that you can:
+
+- **Use directly** as an open-source alternative to a commercial tool
+- **Self-host and adapt** when the hosted version doesn't fit your constraints
+- **Fork and extend** for missing features (flag license compatibility)
+- **Learn from** as a reference architecture, even if you ultimately build your own
+
+This applies to requests like "build a CRM", "make a Notion clone", "create a job queue", "I want a dashboard tool". **Prioritize open-source**; include paid alternatives only when clearly the best fit, and flag them explicitly as paid.
+
+**Primary searches:**
+- `"open source {category} github"`, `"self-hosted {product}"`, `"{commercial product} open source alternative"`
+- GitHub: `topic:{keyword}` (browse at `github.com/topics/{topic}`) and search `in:name,description,topics {keyword} stars:>500`
+- `site:alternativeto.net {product}` - filter "Open Source"
+- [awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) - canonical self-hostable list (15k+ stars)
+- [openalternative.co](https://openalternative.co) - curated OSS alternatives to popular SaaS
+- [GitHub Trending](https://github.com/trending) - what the community is building now
+
+More search patterns and resource lists in `references/dev.md`.
+
+**2c. Web search for tools, libraries, and resources** (for the pieces you'll assemble inside your project) - query patterns are domain-specific, see the matching reference file.
+
+**2d. Search for reusable patterns and templates** - boilerplates, starter repos, document frameworks, analysis notebooks, SOPs. See the domain reference.
 
 ### Step 3: Evaluate candidates (rigorous validation with bias detection)
 
@@ -62,10 +83,10 @@ For each candidate, verify:
 
 ### Step 4: Present the recommendation
 
-- **Recommended approach**: one clear pick with reasoning. Why it fits the existing stack.
+- **Recommended approach**: one clear pick with reasoning. Why it fits the existing stack. If a similar open-source project exists, say whether to use it directly, self-host, fork, or just use as reference.
 - **What it solves**: how it addresses the task.
 - **What we still need to build**: remaining custom work (if any).
-- **Alternatives**: 1-2 options with trade-offs. Highlight stack-overlap alternatives.
+- **Alternatives**: 1-2 options with trade-offs. Include similar projects found, commercial alternatives (clearly flagged as paid), and stack-overlap options.
 - **Free resources found**: anything relevant from free-for.dev or similar.
 
 ### Step 5: Execute with found resources
@@ -81,6 +102,7 @@ Not every task warrants the full 5-step workflow.
 | Trivial (rename, typo) | Skip entirely | Everything - just do it |
 | Simple, well-known (add `.gitignore`, format a date) | 1 min max | MCP layer and forum search |
 | Dev task with a clear library solution | 3-5 min | Non-dev reference files |
+| Build a product / system / clone / tool | 10-15 min | Nothing - emphasis on Step 2b (similar projects) |
 | Writing task (report, template) | 3-5 min | MCP layer (2a) entirely |
 | Data / ML task | 5-10 min | Skip MCP unless it's a data pipeline |
 | Complex or ambiguous task | Full workflow | Nothing - run all layers |
@@ -90,6 +112,7 @@ A search that takes longer than the task itself is waste.
 ## What NOT to do
 
 - Don't skip the search and jump to creating, even if you "know" how.
+- Don't reimplement a whole product when a similar open-source project already exists. Check `awesome-selfhosted`, `openalternative.co`, and GitHub topics before assembling from scratch.
 - Don't recommend abandoned projects (12+ months no commits with open critical issues).
 - Don't recommend libraries with unpatched CVEs.
 - Don't add heavy frameworks when a utility would do.

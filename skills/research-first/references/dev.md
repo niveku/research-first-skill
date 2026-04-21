@@ -18,7 +18,67 @@ Check these files and signals before searching:
 - Project uses React -> default to React-compatible tools; flag a framework switch only if it would meaningfully solve a problem React can't.
 - Project uses Next.js -> prefer Next.js-native patterns (App Router, server actions) before third-party libs.
 
-## Step 2b: Web search patterns
+## Step 2b: Finding similar open-source projects (do this FIRST for whole-product tasks)
+
+When the request is "build a CRM", "make a Notion clone", "create a task manager", "I need a dashboard tool", or anything that describes a *product* rather than a *component*, the highest-leverage search is: **does something like this already exist as open source?**
+
+### What to look for
+
+Four outcomes, in priority order:
+
+1. **Use directly** - if an OSS project solves the user's problem and is actively maintained, that's usually the answer. Self-host or use a managed version.
+2. **Self-host and adapt** - if the project is close but needs small modifications and its license allows it.
+3. **Fork and extend** - if the project is close but missing features. Check license compatibility (MIT/Apache/BSD are safe; GPL/AGPL are copyleft and will force your fork to be GPL/AGPL too).
+4. **Reference architecture** - if none of the above fits, still read the code: data models, API design, auth flow, and background-job strategy are often worth copying.
+
+Include paid commercial alternatives as well, but flag them clearly as paid. Prioritize OSS.
+
+### Search patterns
+
+**Web queries:**
+- `"open source {category} github"` - e.g., `"open source CRM github"`
+- `"self-hosted {product}"` - e.g., `"self-hosted analytics"`
+- `"{commercial product} open source alternative"` - e.g., `"Notion open source alternative"`
+- `"{product category} like {known product}"` - e.g., `"project management like Asana self-hosted"`
+- `"{category} open source 2025"` - recent, avoids abandoned projects
+
+**GitHub-native:**
+- `github.com/topics/{topic}` - e.g., `github.com/topics/crm`, `github.com/topics/self-hosted`, `github.com/topics/low-code`
+- GitHub search syntax: `in:name,description,topics {keyword} stars:>500 pushed:>2025-06-01` - finds popular AND active projects
+- `github.com/trending` - today's / this week's trending repos by language
+- `github.com/trending/{language}?since=monthly` - monthly trending per language
+
+**Alternative databases:**
+- [alternativeto.net](https://alternativeto.net) - largest software alternatives DB. Always filter by "Open Source" license and by "Self-Hosted" platform if you plan to host it yourself.
+- [openalternative.co](https://openalternative.co) - curated OSS alternatives to popular SaaS (hand-picked, higher signal than alternativeto.net).
+- [privacyguides.org/tools](https://www.privacyguides.org/tools/) - privacy-respecting alternatives, most are OSS.
+
+### Canonical curated lists
+
+- [awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) - canonical list of self-hostable software. 15k+ stars. Categorized by function (CRM, analytics, chat, file sharing, etc.). Always check this first for "can I self-host something like X" questions.
+- [awesome-oss-alternatives](https://github.com/RunaCapital/awesome-oss-alternatives) - maps OSS projects to commercial SaaS they replace.
+- [awesome-{topic}](https://github.com/sindresorhus/awesome) - start here to find the topic-specific awesome list.
+- [LibHunt](https://www.libhunt.com) - compares OSS projects by activity + popularity side-by-side.
+
+### Evaluating similar projects (before recommending)
+
+For each candidate, check the Step 3 criteria (activity, adoption, security, license, docs, fit) and additionally:
+
+- **Scope match**: does it solve 80%+ of the user's problem, or is it a toy/demo?
+- **Self-hostability**: if the user needs to own the data, does it have a Docker image, deployment guide, or Helm chart?
+- **License compatibility with fork intent**: if the user plans to modify it heavily, is the license compatible with their distribution plan?
+- **Community health**: open issues responded to within days/weeks, not months. Contributor count > 5 (not a one-person project about to be abandoned).
+- **Data portability**: can the user export their data if they outgrow the project?
+
+### Presenting similar-project findings in Step 4
+
+Frame it clearly:
+
+- "There are 3 similar OSS projects: **{A}** (recommended - most active, fits your stack), **{B}** (has more features but heavier), **{C}** (reference only - unmaintained but its data model is worth studying)."
+- "Commercial equivalents: **{X}** ($N/mo, saves the build time) - use only if self-hosting isn't an option."
+- For "fork and extend" recommendations: name the exact features the user would add on top, and confirm license compatibility.
+
+## Step 2c: Web search patterns
 
 - `"best open source {thing} {language} 2025 2026"` - recent recommendations
 - `"{problem} library {language} github stars:>500"` - popular, vetted libraries
@@ -36,7 +96,7 @@ Check these files and signals before searching:
 
 **Dev.to / Hashnode:** `"{tool} review site:dev.to"` for recent developer experience posts
 
-## Step 2c: Reusable patterns and templates
+## Step 2d: Reusable patterns and templates
 
 - GitHub code search: `"boilerplate {stack}"`, `"starter {framework}"`
 - Official framework recipes: Next.js examples repo, Vercel templates, Django packages
@@ -55,6 +115,15 @@ Check these files and signals before searching:
 **Free tools and services:**
 - [free-for.dev](https://github.com/ripienaar/free-for-dev) - free tiers for SaaS, PaaS, IaaS
 - Awesome lists per domain (`awesome-nodejs`, `awesome-python`, etc.)
+
+**OSS alternatives / similar-project discovery:**
+- [awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) - self-hostable software
+- [awesome-oss-alternatives](https://github.com/RunaCapital/awesome-oss-alternatives) - OSS replacements for SaaS
+- [alternativeto.net](https://alternativeto.net) - broad alternatives database (filter OSS)
+- [openalternative.co](https://openalternative.co) - curated OSS SaaS alternatives
+- [privacyguides.org/tools](https://www.privacyguides.org/tools/) - privacy-respecting OSS
+- [LibHunt](https://www.libhunt.com) - side-by-side OSS project comparison
+- [GitHub Trending](https://github.com/trending), `github.com/topics/{topic}`
 
 **MCP, skills, and plugin ecosystems:**
 - `search_mcp_registry` - MCPs available to connect
