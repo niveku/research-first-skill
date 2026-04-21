@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.1] - 2026-04-20
+
+### Fixed
+- `plugin.json` `repository` field changed from npm-style object (`{type, url}`) to plain string. The Claude Code plugin validator rejected the object form with `repository: Invalid input: expected string, received object`, causing `/plugin install research-first@niveku-plugins` to fail. v1.3.1 is the first fully install-testable release on the Claude Code plugin path.
+
 ## [1.3.0] - 2026-04-20
 
 ### Added
