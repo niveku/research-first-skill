@@ -1,0 +1,27 @@
+{
+  "name": "research-first",
+  "version": "1.2.0",
+  "description": "Finds existing tools, libraries, MCPs, templates, datasets, and frameworks before creating anything from scratch. Prevents reinventing the wheel across dev, writing, data, ops, and research tasks.",
+  "author": {
+    "name": "Kevin Henao",
+    "email": "kevin.henao@gmail.com",
+    "url": "https://github.com/niveku"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/niveku/research-first-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niveku/research-first-skill.git"
+  },
+  "keywords": [
+    "research",
+    "workflow",
+    "discovery",
+    "skill",
+    "claude-code",
+    "claude-code-plugin",
+    "agent-skills",
+    "mcp",
+    "anti-reinvention"
+  ]
+}

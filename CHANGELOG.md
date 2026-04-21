@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0] - 2026-04-20
+
+### Changed
+- **Repository converted to Claude Code plugin format** - installable via `/plugin marketplace add niveku/research-first-skill` + `/plugin install research-first@niveku-plugins`
+- Moved `research-first/` -> `skills/research-first/` per Claude Code plugin convention
+- Rewrote frontmatter `description` with Anthropic's recommended triggering pattern (exact-phrase triggers in quotes, "Use when" framing). Condensed from ~700 chars of folded YAML to ~665 chars of a single matcher-friendly line. Improves skill activation on phrases like "build me a", "is there a library for", "how do I implement".
+- Split monolithic SKILL.md into progressive disclosure: core workflow in `SKILL.md`, domain specifics loaded on demand from `references/dev.md`, `references/writing.md`, `references/data.md`, `references/ops.md`.
+
+### Added
+- `.claude-plugin/plugin.json` - plugin manifest with keywords for registry discoverability
+- `.claude-plugin/marketplace.json` - marketplace entry for standalone distribution
+- `.github/workflows/validate-plugins.yml` - CI validates `plugin.json`, `marketplace.json`, and SKILL.md frontmatter on every push/PR
+- README badges: plugin badge, CI status badge
+- `.gitignore` hardened (`.claude/`, `.env`, build artifacts, common Python/Node caches)
+
+### Deprecated
+- `research-first.skill` binary (old zip packaging). Use `/plugin install` or manual `cp skills/research-first/` instead.
+
 ## [1.1.0] - 2026-04-15
 
 ### Changed

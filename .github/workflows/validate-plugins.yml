@@ -1,0 +1,109 @@
+name: Validate Plugin
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin.json
+        run: |
+          if [ ! -f .claude-plugin/plugin.json ]; then
+            echo "::error::.claude-plugin/plugin.json is missing"
+            exit 1
+          fi
+          python3 -c "
+          import json, sys
+          with open('.claude-plugin/plugin.json') as f:
+              m = json.load(f)
+          required = ['name', 'version', 'description']
+          missing = [k for k in required if k not in m]
+          if missing:
+              print(f'::error::plugin.json missing required fields: {missing}')
+              sys.exit(1)
+          print(f'OK plugin.json: {m[\"name\"]} v{m[\"version\"]}')
+          "
+
+      - name: Validate marketplace.json
+        run: |
+          if [ ! -f .claude-plugin/marketplace.json ]; then
+            echo "::warning::.claude-plugin/marketplace.json is missing (optional, but recommended for standalone distribution)"
+            exit 0
+          fi
+          python3 -c "
+          import json, sys
+          with open('.claude-plugin/marketplace.json') as f:
+              m = json.load(f)
+          required = ['name', 'owner', 'plugins']
+          missing = [k for k in required if k not in m]
+          if missing:
+              print(f'::error::marketplace.json missing required fields: {missing}')
+              sys.exit(1)
+          if not isinstance(m['plugins'], list) or not m['plugins']:
+              print('::error::marketplace.json plugins must be a non-empty array')
+              sys.exit(1)
+          for p in m['plugins']:
+              for k in ('name', 'source', 'description'):
+                  if k not in p:
+                      print(f'::error::plugin entry missing {k}: {p}')
+                      sys.exit(1)
+          print(f'OK marketplace.json: {m[\"name\"]} with {len(m[\"plugins\"])} plugin(s)')
+          "
+
+      - name: Validate SKILL.md files
+        run: |
+          found=0
+          for skill in skills/*/SKILL.md; do
+            if [ -f "$skill" ]; then
+              found=$((found + 1))
+              python3 -c "
+          import sys, re
+          path = '$skill'
+          with open(path, encoding='utf-8') as f:
+              content = f.read()
+          if not content.startswith('---'):
+              print(f'::error file={path}::missing YAML frontmatter')
+              sys.exit(1)
+          end = content.find('---', 3)
+          if end == -1:
+              print(f'::error file={path}::unterminated frontmatter')
+              sys.exit(1)
+          frontmatter = content[3:end]
+          if 'name:' not in frontmatter:
+              print(f'::error file={path}::frontmatter missing name field')
+              sys.exit(1)
+          if 'description:' not in frontmatter:
+              print(f'::error file={path}::frontmatter missing description field')
+              sys.exit(1)
+          desc_match = re.search(r'description:\s*(.+?)(?=\n[a-z_]+:\s|\Z)', frontmatter, re.DOTALL)
+          if desc_match:
+              desc_len = len(desc_match.group(1).strip())
+              if desc_len > 1024:
+                  print(f'::warning file={path}::description is {desc_len} chars (>1024 may hurt skill matching)')
+              else:
+                  print(f'  description length: {desc_len} chars')
+          print(f'OK {path}')
+          "
+            fi
+          done
+          if [ $found -eq 0 ]; then
+            echo "::error::no SKILL.md files found under skills/"
+            exit 1
+          fi
+
+      - name: Check repository structure
+        run: |
+          missing=()
+          [ -f README.md ]   || missing+=("README.md")
+          [ -f LICENSE ]     || missing+=("LICENSE")
+          [ -f CHANGELOG.md ] || missing+=("CHANGELOG.md")
+          if [ ${#missing[@]} -ne 0 ]; then
+            echo "::warning::recommended files missing: ${missing[*]}"
+          fi
+          echo "OK repository structure"

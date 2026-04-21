@@ -1,30 +1,32 @@
-# Research-First Skill
+# Research-First
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/niveku/research-first-skill)](https://github.com/niveku/research-first-skill/releases)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://docs.claude.com/claude-code)
+[![Validate Plugin](https://github.com/niveku/research-first-skill/actions/workflows/validate-plugins.yml/badge.svg)](https://github.com/niveku/research-first-skill/actions/workflows/validate-plugins.yml)
 
-A skill for AI coding agents that enforces a **research-first workflow** — always search for existing tools, libraries, templates, frameworks, and resources before creating anything from scratch.
+A Claude Code plugin / agent skill that enforces a **research-first workflow**: always search for existing tools, libraries, MCPs, templates, frameworks, datasets, and open-source resources before creating anything from scratch.
 
-Built for **Claude Code**. Also compatible with Codex, Gemini CLI, Cursor, and any agent that supports SKILL.md-based skills.
+Built for **Claude Code**. Also compatible with Codex, Gemini CLI, Cursor, and any agent that reads SKILL.md.
 
 Works for any workflow: development, writing, data analysis, ops, and research.
 
 ## What it does
 
-When you ask your agent to build, write, research, or automate something, this skill makes it:
+When you ask your agent to build, write, analyze, or automate something, this skill makes it:
 
-1. **Detect your existing context** — reads config files, style guides, existing assets, and current stack to understand what you already have
+1. **Detect your existing context** - reads config files, style guides, data sources, and current stack.
 2. **Search for existing solutions** across multiple layers:
    - Connected MCPs, plugins, and skills
    - Official registries (Anthropic MCP registry, Smithery.ai, mcp.run, Glama.ai)
-   - GitHub repos, community lists (`awesome-*`), and open-source tools
-   - Templates and frameworks for writing, data, and process tasks (Notion, Kaggle, Hugging Face, etc.)
+   - GitHub repos, `awesome-*` lists, and open-source tools
+   - Templates for writing, data, and process tasks (Notion, Kaggle, Hugging Face, etc.)
    - Developer forums (Reddit, HN, GitHub Discussions) for unfiltered opinions
    - Free-tier services via [free-for.dev](https://free-for.dev)
-3. **Validate candidates rigorously** — checks stars, downloads, activity, security (CVEs), license, and fit with your context
-4. **Detect self-promotional bias** — cross-references 3+ sources, flags "Top 10" blogs that rank their own product #1
-5. **Recommend one clear solution** with alternatives and trade-offs
-6. **Only then create** — using found resources instead of reinventing the wheel
+3. **Validate rigorously** - activity, adoption, security (CVEs), license, and fit.
+4. **Detect self-promotional bias** - cross-references 3+ sources, flags "Top 10" blogs that rank their own product #1.
+5. **Recommend one clear solution** with alternatives and trade-offs.
+6. **Only then create** - using found resources instead of reinventing the wheel.
 
 ## Why
 
@@ -32,32 +34,41 @@ Creating from scratch when a battle-tested solution already exists is the most e
 
 ## Install
 
-### Option 1: Double-click the `.skill` file
+### Claude Code (recommended)
 
-Download `research-first.skill` and double-click it. It installs automatically in Claude Code.
-
-### Option 2: Manual install
+Add the marketplace, then install the plugin:
 
 ```bash
-# Claude Code — global (all projects)
-cp -r research-first/ ~/.claude/skills/
+/plugin marketplace add niveku/research-first-skill
+/plugin install research-first@niveku-plugins
+```
 
-# Claude Code — per project
-cp -r research-first/ .claude/skills/
+Once installed, the skill triggers automatically. No manual invocation needed.
 
-# Codex / Gemini CLI / Cursor — check your agent's skills directory
-cp -r research-first/ <your-agent-skills-dir>/
+### Other agents (Codex, Gemini CLI, Cursor, etc.)
+
+Copy the skill folder into your agent's skills directory:
+
+```bash
+# Example: Claude Code manual install (per project)
+cp -r skills/research-first .claude/skills/
+
+# Example: Claude Code manual install (global)
+cp -r skills/research-first ~/.claude/skills/
+
+# Other agents: check your agent's skill directory convention
+cp -r skills/research-first <your-agent-skills-dir>/
 ```
 
 ## Usage
 
-Once installed, the skill triggers automatically. No special commands needed.
+Once installed, the skill activates when you ask your agent to build, create, or implement something. No special commands needed.
 
 **Development:**
 - "Add authentication to my Next.js app"
 - "I need web scraping in Python"
 - "Set up CI/CD with free hosting for my React app"
-- "Build a REST API with a database"
+- "Is there a library for X?"
 
 **Writing / content:**
 - "Write a product requirements document"
@@ -77,13 +88,31 @@ Once installed, the skill triggers automatically. No special commands needed.
 ## What's inside
 
 ```
-research-first/
-└── SKILL.md          # The skill instructions
-research-first.skill  # Packaged skill (installable)
-README.md             # This file
-CHANGELOG.md          # Version history
-LICENSE               # MIT License
+research-first-skill/
+├── .claude-plugin/
+│   ├── plugin.json          # Plugin manifest
+│   └── marketplace.json     # Marketplace entry (for /plugin install)
+├── skills/
+│   └── research-first/
+│       ├── SKILL.md         # The skill instructions (loaded first)
+│       └── references/
+│           ├── dev.md       # Dev-specific search patterns
+│           ├── writing.md   # Writing/content templates
+│           ├── data.md      # Data, ML, analysis resources
+│           └── ops.md       # CI/CD, infra, SOP resources
+├── .github/workflows/
+│   └── validate-plugins.yml # CI: validates plugin.json + SKILL.md
+├── README.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+└── LICENSE
 ```
+
+The skill uses **progressive disclosure**: `SKILL.md` loads first with the core workflow, and domain-specific details in `references/*.md` load only when relevant.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 

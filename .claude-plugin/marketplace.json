@@ -1,0 +1,30 @@
+{
+  "name": "niveku-plugins",
+  "owner": {
+    "name": "Kevin Henao",
+    "email": "kevin.henao@gmail.com",
+    "url": "https://github.com/niveku"
+  },
+  "metadata": {
+    "description": "Claude Code plugins and skills by Kevin Henao (niveku).",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "research-first",
+      "source": "./",
+      "description": "Research-first workflow: finds existing tools, libraries, MCPs, templates, and datasets before building from scratch. Works for dev, writing, data, ops, and research tasks.",
+      "version": "1.2.0",
+      "category": "productivity",
+      "tags": [
+        "research",
+        "workflow",
+        "discovery",
+        "mcp",
+        "skill",
+        "anti-reinvention"
+      ],
+      "strict": false
+    }
+  ]
+}
